@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import {LoginService} from "../../login/login.service";
 import {take} from "rxjs";
+import {LogoutInput} from "../../model/loginDto";
 
 @Component({
   selector: 'app-navbar',
@@ -16,7 +17,7 @@ export class NavbarComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    if (localStorage.getItem('token') !== undefined) {
+    if (localStorage.getItem('token') !== null) {
       this.showLogout = true;
     }
   }
@@ -26,13 +27,15 @@ export class NavbarComponent implements OnInit {
   }
 
   logoutUser() {
-    this.loginService.logout()
-      .subscribe((response) => {
-        if (response) {
-          localStorage.removeItem('token');
-          localStorage.removeItem('userId');
-          this.showLogout = false;
-        }
+    let logoutPayload: LogoutInput = {
+      cookieToken: localStorage.getItem('refreshToken')
+    }
+    this.loginService.logout(logoutPayload)
+      .subscribe(() => {
+        localStorage.removeItem('token');
+        localStorage.removeItem('refreshToken');
+        localStorage.removeItem('userId');
+        this.showLogout = false;
       });
   }
 }

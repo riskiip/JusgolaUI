@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {LoginService} from "./login.service";
@@ -30,11 +30,6 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  redirectPage() {
-    alert('Login to Jusgola is succesful.');
-    this.router.navigate(['/jusgola/customer']);
-  }
-
   loginUser() {
     let loginPayload: LoginInput = {
       email: this.loginForm.get('email')?.value,
@@ -45,9 +40,15 @@ export class LoginComponent implements OnInit {
       .subscribe((res) => {
         if (res) {
           localStorage.setItem('token', res.token);
+          localStorage.setItem('refreshToken', res.refreshToken);
           localStorage.setItem('userId', res._id);
-          this.refreshToken = this.cookieService.getCookie('refreshToken');
-          this.router.navigate(['jusgola']);
+          if (res.role === 'customer') {
+            this.router.navigate(['jusgola/customer']);
+          } else if (res.role === 'merchant') {
+            this.router.navigate(['jusgola/merchant']);
+          } else {
+            this.router.navigate(['jusgola/admin']);
+          }
         }
       })
   }

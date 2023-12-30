@@ -41,7 +41,6 @@ export class RegistrationComponent implements OnInit {
     this.loginService.signup(signupPayload)
       .pipe(take(1))
       .subscribe((res) => {
-        console.log(res);
         if (res) {
           this.router.navigate(['/jusgola/login'])
         }

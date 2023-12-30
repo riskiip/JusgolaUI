@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {environment} from "../../environments/environment";
-import {LoginInput, LoginOutput, SignupInput} from "../model/loginDto";
+import {LoginInput, LoginOutput, LogoutInput, SignupInput} from "../model/loginDto";
 import {map, Observable} from "rxjs";
 
 @Injectable({
@@ -36,10 +36,9 @@ export class LoginService {
       )
   }
 
-  logout(): Observable<any> {
-    const headers = { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+  logout(payload: LogoutInput): Observable<any> {
     return this.http
-      .get(`${environment.url}/api/user/logout`, {headers})
+      .post(`${environment.url}/api/user/logout`, payload)
       .pipe(map((response: any) => {
         return response;
       }))

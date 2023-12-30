@@ -20,3 +20,7 @@ export interface SignupInput {
   role: string,
   password: string
 }
+
+export interface LogoutInput {
+  cookieToken: string | null
+}
