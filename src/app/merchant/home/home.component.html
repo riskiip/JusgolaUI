@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title></title>
+  <style>
+    body {
+      background-image: url('assets/images/bg.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+  </style>
+</head>
+<body>
+<div class="d-flex">
+  <aside class="border-end border-primary">
+    <app-sidebar></app-sidebar>
+  </aside>
+
+  <main class="main-content w-100 p-3">
+    <router-outlet></router-outlet>
+  </main>
+</div>
+</body>
+</html>

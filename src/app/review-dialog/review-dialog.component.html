@@ -1,0 +1,14 @@
+<h1 mat-dialog-title>Write a Review</h1>
+
+<div mat-dialog-content>
+  <textarea matInput [(ngModel)]="reviewText" placeholder="Write your review" rows="5"></textarea>
+
+  <div class="rating-container">
+    <mat-icon *ngFor="let star of [1, 2, 3, 4, 5]" (click)="onStarClick(star)" [style.color]="star <= selectedRating ? 'gold' : 'gray'">star</mat-icon>
+  </div>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button [mat-dialog-close]="reviewText" cdkFocusInitial>Submit Review</button>
+</div>

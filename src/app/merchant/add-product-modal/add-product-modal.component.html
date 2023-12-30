@@ -1,0 +1,24 @@
+<h1 mat-dialog-title>Add Hotel Product</h1>
+<div mat-dialog-content>
+  <form [formGroup]="productForm" id="product-form">
+    <mat-form-field>
+      <input matInput placeholder="Hotel Name" formControlName="title">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Description" formControlName="description">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Price" formControlName="price">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Quantity" formControlName="quantity">
+    </mat-form-field>
+    <br>
+    <label for="picture">Upload a picture</label>
+    <input type="file" name="picture" (change)="onUploadImage($event)" id="picture" formControlName="image">
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancelClick()">Cancel</button>
+  <button mat-button color="primary" (click)="onSaveClick()">Save</button>
+</div>

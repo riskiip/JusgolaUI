@@ -1,0 +1,156 @@
+@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+@import 'bootstrap/scss/bootstrap';
+
+.top-right-button {
+  margin-right: 10px;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap');
+
+*, *::before *::after {
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  font-family: 'Quicksand', sans-serif;
+  margin: 0;
+
+  display: flex;
+  flex-direction: column;
+}
+
+header.navbar-container{
+  width: 90%;
+  margin-inline: auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-block: 1rem;
+  z-index: 999;
+}
+
+header.navbar-container .nav-list ul {
+  padding-left: 0;
+  display: flex;
+  justify-content: center;
+  gap: 2rem 3rem;
+  list-style: none;
+}
+
+header.navbar-container .nav-list ul a{
+  text-decoration: none;
+  color: black;
+}
+
+header.navbar-container .nav-list ul a:hover{
+  color: #3784FB;
+  background-color: transparent;
+}
+
+header.navbar-container .button button{
+  border-radius: 5px;
+  background-color: #3784FB;
+  color: white;
+  padding: .7rem 2rem;
+  text-transform: uppercase;
+  border: 3px solid transparent;
+}
+
+
+main .banner  {
+  flex: 1;
+  display: flex;
+  padding-left: 50px;
+  align-items: center;
+  width: 90%;
+  background-color: #D5E0F3;
+  border-radius: 20px;
+  margin-inline: auto;
+  display: flex;
+  justify-content: space-around;
+}
+
+.banner h1 {
+  text-align: left;
+}
+main .banner .banner-description{
+  flex: 1 1;
+}
+
+main .banner .banner-description .title{
+  margin-block: 1rem;
+  line-height: 2.7rem;
+}
+
+main .banner .banner-description {
+  line-height: 1.7rem;
+  font-size: 1.2rem;
+}
+
+main .banner .banner-description button{
+  padding: .8rem 2.5rem;
+  margin-block-start: 1rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 1rem;
+  font-family: 'Quicksand', sans-serif;
+  color: white;
+
+  border: 3px solid transparent;
+  border-radius: 5px;
+  background-color: #3784FB;
+  cursor: pointer;
+  transition: all .15s ease-in;
+}
+
+main .content-image{
+  flex: 1;
+  display: flex;
+}
+
+main .content-image img{
+  margin: auto;
+  min-width: 250px;
+  width: 600px;
+}
+
+main .partners{
+  width: 90%;
+  margin-inline: auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-block: 1rem;
+  z-index: 999;
+  padding: 10px;
+}
+
+.partners{
+  margin-top: 40px;
+}
+
+.partner img{
+  width: 150px;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.partner img:hover{
+  transform: scale(1.1);
+}
+
+.rating-container {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.mat-icon {
+  cursor: pointer;
+  font-size: 24px;
+}
