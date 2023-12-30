@@ -4,7 +4,6 @@ import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {LoginService} from "./login.service";
 import {LoginInput} from "../model/loginDto";
 import {take} from "rxjs";
-import {CookiesService} from "../utilities/cookies.service";
 
 @Component({
   selector: 'app-login',
@@ -18,8 +17,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
     private fb: FormBuilder,
-    private loginService: LoginService,
-    private cookieService: CookiesService
+    private loginService: LoginService
   ) {
     this.loginForm = this.fb.group({
       email: new FormControl(null),

@@ -3,6 +3,7 @@ import {Router} from "@angular/router";
 import {ProductService} from "../product/product.service";
 import {CartInput, PurchaseProductInput} from "../../model/productDto";
 import {take} from "rxjs";
+import {SummaryOrderPdfService} from "../../utilities/summary-order-pdf.service";
 
 @Component({
   selector: 'app-summary',
@@ -10,10 +11,12 @@ import {take} from "rxjs";
   styleUrls: ['./summary.component.scss']
 })
 export class SummaryComponent implements OnInit, OnDestroy {
-  showPage = false;
+  showPage = true;
+  productDetail: any;
 
   constructor(private router: Router,
-              private productService: ProductService) { }
+              private productService: ProductService,
+              private summaryOrderPdfService: SummaryOrderPdfService) { }
 
   ngOnInit(): void {
     this.addProductToCart();
@@ -46,6 +49,17 @@ export class SummaryComponent implements OnInit, OnDestroy {
       .pipe(take(1))
       .subscribe((res) => {
         if (res) {
+          this.inquiryProduct();
+        }
+      })
+  }
+
+  inquiryProduct() {
+    this.productService.inquiryProductDetail(localStorage.getItem('productId'))
+      .pipe(take(1))
+      .subscribe((res) => {
+        if (res) {
+          this.productDetail = res;
           this.showPage = true;
           localStorage.removeItem('productId');
         }
@@ -54,6 +68,10 @@ export class SummaryComponent implements OnInit, OnDestroy {
 
   backToHome() {
     this.router.navigate(['/jusgola/home']);
+  }
+
+  downloadPdf() {
+    this.summaryOrderPdfService.generatePdf(this.productDetail);
   }
 
   ngOnDestroy() {

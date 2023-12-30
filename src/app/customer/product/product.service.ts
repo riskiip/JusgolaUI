@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
-import {map, Observable, take} from "rxjs";
+import {map, Observable} from "rxjs";
 import {
   CartInput,
   ProductOutput,
@@ -16,7 +16,8 @@ import {
 })
 export class ProductService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   inquiryAllVerifiedProduct(): Observable<ProductOutput> {
     return this.http
@@ -28,7 +29,7 @@ export class ProductService {
       .get<ProductOutput>(`${environment.url}/api/product?ministry_status=false`);
   }
 
-  inquiryProductByUser(userId: string|null): Observable<ProductOutput> {
+  inquiryProductByUser(userId: string | null): Observable<ProductOutput> {
     return this.http
       .get<ProductOutput>(`${environment.url}/api/product?createdBy=${userId}`)
   }
@@ -63,7 +64,7 @@ export class ProductService {
       }))
   }
 
-  updateProduct(productId: string, payload: RegisterProductInput): Observable<any>{
+  updateProduct(productId: string, payload: RegisterProductInput): Observable<any> {
     return this.http
       .put<any>(`${environment.url}/api/product/${productId}`, payload)
       .pipe(map((response: any) => {
@@ -113,5 +114,13 @@ export class ProductService {
       .pipe(map((response: any) => {
         return response;
       }))
+  }
+
+  inquiryProductDetail(productId: string | null): Observable<any> {
+    return this.http
+      .get<Observable<any>>(`${environment.url}/api/product/detail/${productId}`)
+      .pipe(map((response: any) => {
+        return response
+      }));
   }
 }
