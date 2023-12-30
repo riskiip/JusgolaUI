@@ -2,7 +2,14 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
 import {map, Observable, take} from "rxjs";
-import {ProductOutput, RatingProductInput, RegisterProductInput, RegisterProductOutput} from "../../model/productDto";
+import {
+  CartInput,
+  ProductOutput,
+  PurchaseProductInput,
+  RatingProductInput,
+  RegisterProductInput,
+  RegisterProductOutput
+} from "../../model/productDto";
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +33,7 @@ export class ProductService {
       .get<ProductOutput>(`${environment.url}/api/product?createdBy=${userId}`)
   }
 
-  purchaseProduct(): Observable<any> {
+  purchaseProductOnline(): Observable<any> {
     return this.http
       .post<any>(`${environment.url}/api/product/pay`, '')
       .pipe(map((response: any) => {
@@ -79,6 +86,30 @@ export class ProductService {
     });
     return this.http
       .put<any>(`${environment.url}/api/product/rating`, payload, {headers: reqHeader})
+      .pipe(map((response: any) => {
+        return response;
+      }))
+  }
+
+  addToCart(payload: CartInput): Observable<any> {
+    const reqHeader = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + localStorage.getItem('token')
+    });
+    return this.http
+      .post<any>(`${environment.url}/api/user/cart`, payload, {headers: reqHeader})
+      .pipe(map((response: any) => {
+        return response;
+      }))
+  }
+
+  purchaseProduct(payload: PurchaseProductInput): Observable<any> {
+    const reqHeader = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + localStorage.getItem('token')
+    });
+    return this.http
+      .post<any>(`${environment.url}/api/user/cart/cash-order`, payload, {headers: reqHeader})
       .pipe(map((response: any) => {
         return response;
       }))

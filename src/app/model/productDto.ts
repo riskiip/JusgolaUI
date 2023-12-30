@@ -57,3 +57,16 @@ export interface RatingProductInput {
   comment: string
 }
 
+export interface CartInput {
+  cart: ProductCart[]
+}
+
+export interface ProductCart {
+  _id: string | null,
+  count: number
+}
+
+export interface PurchaseProductInput {
+  transactionMethod: string
+}
+

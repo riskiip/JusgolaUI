@@ -9,6 +9,7 @@ import {ReportComponent} from "./merchant/report/report.component";
 import {LoginComponent} from "./login/login.component";
 import {CustomerhomeComponent} from "./customerhome/customerhome.component";
 import {ReceiptComponent} from "./receipt/receipt.component";
+import {SummaryComponent} from "./customer/summary/summary.component";
 
 const routes: Routes = [
   {
@@ -56,6 +57,10 @@ const routes: Routes = [
       {
         path: 'receipt',
         component: ReceiptComponent
+      },
+      {
+        path: 'summary',
+        component: SummaryComponent
       }
     ]
   }

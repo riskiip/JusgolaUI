@@ -13,6 +13,7 @@ import {take} from "rxjs";
 })
 export class ProductComponent implements OnInit {
   dataSources!: any;
+  notLoading = true;
 
   constructor(
     private dialog: MatDialog,
@@ -56,11 +57,15 @@ export class ProductComponent implements OnInit {
     });
   }
 
-  purchaseProduct() {
-    this.productService.purchaseProduct()
+  purchaseProduct(event: any) {
+    localStorage.setItem('productId', event[0]._id);
+    this.notLoading = false;
+    this.productService.purchaseProductOnline()
       .pipe(take(1))
       .subscribe((res) => {
-        window.open(res);
+        if (res) {
+          window.open(res, "_self");
+        }
       })
     // window.open('https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=EC-1AJ28718E7729853L');
   }

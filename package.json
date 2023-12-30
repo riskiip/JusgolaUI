@@ -25,6 +25,7 @@
     "docx": "^8.2.4",
     "docxtemplater": "^3.42.2",
     "file-saver": "^2.0.5",
+    "jspdf": "^2.5.1",
     "ngx-csv": "^0.3.2",
     "rxjs": "~7.4.0",
     "tslib": "^2.3.0",
