@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
 import {map, Observable, take} from "rxjs";
-import {ProductOutput, RegisterProductInput, RegisterProductOutput} from "../../model/productDto";
+import {ProductOutput, RatingProductInput, RegisterProductInput, RegisterProductOutput} from "../../model/productDto";
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,12 @@ export class ProductService {
 
   inquiryAllVerifiedProduct(): Observable<ProductOutput> {
     return this.http
-      .get<ProductOutput>(`${environment.url}/api/product`);
+      .get<ProductOutput>(`${environment.url}/api/product?ministry_status=true`);
+  }
+
+  inquiryNotVerifiedProduct(): Observable<ProductOutput> {
+    return this.http
+      .get<ProductOutput>(`${environment.url}/api/product?ministry_status=false`);
   }
 
   inquiryProductByUser(userId: string|null): Observable<ProductOutput> {
@@ -62,6 +67,18 @@ export class ProductService {
   deleteProduct(productId: string): Observable<any> {
     return this.http
       .delete<any>(`${environment.url}/api/product/${productId}`)
+      .pipe(map((response: any) => {
+        return response;
+      }))
+  }
+
+  ratingProduct(payload: RatingProductInput): Observable<any> {
+    const reqHeader = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + localStorage.getItem('token')
+    });
+    return this.http
+      .put<any>(`${environment.url}/api/product/rating`, payload, {headers: reqHeader})
       .pipe(map((response: any) => {
         return response;
       }))

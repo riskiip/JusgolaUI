@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {APPROVAL_DATA} from "../model/admin.approval.model";
+import {ProductService} from "../customer/product/product.service";
+import {take} from "rxjs";
+import {RegisterProductInput} from "../model/productDto";
 
 @Component({
   selector: 'app-admin',
@@ -8,20 +11,46 @@ import {APPROVAL_DATA} from "../model/admin.approval.model";
 })
 export class AdminComponent implements OnInit {
 
-  displayedColumns: string[] = ['position', 'merchantname', 'status', 'action'];
-  dataSource = APPROVAL_DATA;
+  displayedColumns: string[] = ['title', 'description', 'price', 'action'];
+  dataSource: any;
 
-  constructor() { }
+  constructor(private productService: ProductService) { }
 
   ngOnInit(): void {
+    this.inquiryNotVerifiedProduct()
   }
 
-  approveStatus(rowData: any) {
-    rowData.status = 'Approved';
+  inquiryNotVerifiedProduct() {
+    this.productService.inquiryNotVerifiedProduct()
+      .pipe(take(1))
+      .subscribe((res) => {
+        if (res) {
+          this.dataSource = res;
+        }
+      });
   }
 
-  rejectStatus(rowData: any) {
-    rowData.status = 'Rejected';
+  approveStatus(element: any) {
+    const editPayload: RegisterProductInput = {
+      ministry_status: true
+    }
+    this.productService.updateProduct(element._id, editPayload)
+      .pipe(take(1))
+      .subscribe((res) => {
+        if (res) {
+          // window.location.reload();
+        }
+      })
+  }
+
+  rejectStatus(element: any) {
+    this.productService.deleteProduct(element._id)
+      .pipe(take(1))
+      .subscribe((res) => {
+        if (res) {
+          // window.location.reload();
+        }
+      });
   }
 
 }

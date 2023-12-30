@@ -47,7 +47,7 @@ export class ProductComponent implements OnInit {
 
   openReviewDialog(dataSource: any): void {
     const dialogRef = this.dialog.open(ReviewDialogComponent, {
-      data: {}
+      data: {data: dataSource}
     });
 
     dialogRef.afterClosed().subscribe(result => {

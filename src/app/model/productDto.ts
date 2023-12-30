@@ -31,6 +31,7 @@ export interface RegisterProductInput {
   description?: string,
   price?: number,
   quantity?: number,
+  ministry_status?: boolean
 }
 
 export interface RegisterProductOutput {
@@ -49,3 +50,10 @@ export interface RegisterProductOutput {
   updatedAt: string,
   __v: number
 }
+
+export interface RatingProductInput {
+  prodId: string,
+  star: number,
+  comment: string
+}
+
