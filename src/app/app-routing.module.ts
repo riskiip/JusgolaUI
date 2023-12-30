@@ -10,6 +10,7 @@ import {LoginComponent} from "./login/login.component";
 import {CustomerhomeComponent} from "./customerhome/customerhome.component";
 import {ReceiptComponent} from "./receipt/receipt.component";
 import {SummaryComponent} from "./customer/summary/summary.component";
+import {RegistrationComponent} from "./registration/registration.component";
 
 const routes: Routes = [
   {
@@ -49,6 +50,10 @@ const routes: Routes = [
       {
         path: 'login',
         component: LoginComponent
+      },
+      {
+        path: 'registration',
+        component: RegistrationComponent
       },
       {
         path: 'home',

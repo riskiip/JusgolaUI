@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
-import {LoginInput, LoginOutput} from "../model/loginDto";
+import {LoginInput, LoginOutput, SignupInput} from "../model/loginDto";
 import {map, Observable} from "rxjs";
 
 @Injectable({
@@ -10,6 +10,18 @@ import {map, Observable} from "rxjs";
 export class LoginService {
 
   constructor(private http: HttpClient) {
+  }
+
+  signup(payload: SignupInput): Observable<any> {
+    return this.http
+      .post<any>(
+        `${environment.url}/api/user/register`,
+        payload)
+      .pipe(
+        map((response: any) => {
+          return response
+        })
+      )
   }
 
   login(payload: LoginInput): Observable<any> {

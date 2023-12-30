@@ -11,3 +11,12 @@ export interface LoginOutput {
   mobile: string,
   token: string
 }
+
+export interface SignupInput {
+  firstname: string,
+  lastname: string,
+  email: string,
+  mobile: string,
+  role: string,
+  password: string
+}
