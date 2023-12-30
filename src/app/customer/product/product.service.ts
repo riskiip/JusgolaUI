@@ -123,4 +123,9 @@ export class ProductService {
         return response
       }));
   }
+
+  inquiryProductByUserAndMinistry(userId: string | null): Observable<ProductOutput> {
+    return this.http
+      .get<ProductOutput>(`${environment.url}/api/product?ministry_status=true&createdBy=${userId}`)
+  }
 }

@@ -1,22 +1,27 @@
 <div class="container p-4">
 
-  <button mat-raised-button color="primary" class="top-right-button" (click)="downloadCsv()">Download Report</button>
+  <button mat-raised-button color="primary" class="top-right-button" (click)="downloadPdf()">Download Report</button>
 
-  <table mat-table [dataSource]="dataSources" class="mat-elevation-z8 col-md-12 mat-table mt-3">
+  <table mat-table id="my-table" [dataSource]="dataSources" class="mat-elevation-z8 col-md-12 mat-table mt-3">
 
-    <ng-container matColumnDef="position">
-      <th mat-header-cell *matHeaderCellDef> No. </th>
-      <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="productname">
+    <ng-container matColumnDef="title">
       <th mat-header-cell *matHeaderCellDef> Product Name </th>
-      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.title}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="total">
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef> Price </th>
+      <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="sold">
       <th mat-header-cell *matHeaderCellDef> Total Sales </th>
-      <td mat-cell *matCellDef="let element"> {{element.total}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.sold}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="quantity">
+      <th mat-header-cell *matHeaderCellDef> Remains </th>
+      <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
