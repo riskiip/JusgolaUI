@@ -27,10 +27,10 @@ export interface ProductRating {
 }
 
 export interface RegisterProductInput {
-  title: string,
-  description: string,
-  price: number,
-  quantity: number,
+  title?: string,
+  description?: string,
+  price?: number,
+  quantity?: number,
 }
 
 export interface RegisterProductOutput {

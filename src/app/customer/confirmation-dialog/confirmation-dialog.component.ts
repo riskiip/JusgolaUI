@@ -34,9 +34,7 @@ export class ConfirmationDialogComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        console.log('Product purchased!');
       } else {
-        console.log('Purchase canceled.');
       }
     });
   }

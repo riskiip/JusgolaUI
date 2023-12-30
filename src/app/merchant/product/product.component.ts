@@ -30,45 +30,43 @@ export class ProductComponent implements OnInit {
     this.productService.inquiryProductByUser(localStorage.getItem('userId'))
       .pipe(take(1))
       .subscribe((res) => {
-        console.log(res);
         this.dataSources = res;
       })
   }
 
-  openEditProductModal(product: Product): void {
+  openEditProductModal(product: any): void {
     const dialogRef = this.dialog.open(EditProductModalComponent, {
       width: '400px',
       data: { product }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('Edit product modal closed');
     });
   }
 
-  deleteProduct(index: number): void {
-    // console.log('Deleting product at index:', index);
-    // this.dataSources = this.dataSources.filter((_, i) => i !== index);
-    // this.dataSources = [...this.dataSources];
-    // this.cdr.detectChanges();
+  deleteProduct(product: any): void {
+    this.productService.deleteProduct(product._id)
+      .pipe(take(1))
+      .subscribe((res) => {
+        if (res) {
+          window.location.reload();
+        }
+      });
   }
 
   addProduct(): void {
-    console.log('Adding product...');
     const dialogRef = this.dialog.open(AddProductModalComponent, {
       width: '400px',
       data: { name: '', price: 0, image: '' } as Product
     });
 
     dialogRef.afterClosed().subscribe((newProduct: Product) => {
-      console.log('Add product modal closed. New product:', newProduct);
       if (newProduct) {
         newProduct.position = Math.floor(Math.random() * 1000) + 1;
         newProduct.image = 'assets/images/santikahotel.jpg';
 
         this.dataSources = [...this.dataSources, newProduct];
         this.cdr.detectChanges();
-        console.log('Data Sources:', this.dataSources);
       }
     });
   }

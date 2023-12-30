@@ -25,7 +25,6 @@ export class ProductComponent implements OnInit {
       .subscribe((response) => {
         if (response) {
           this.dataSources = response;
-          console.log(this.dataSources);
         }
       })
   }
@@ -40,9 +39,8 @@ export class ProductComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        console.log('Product purchased!');
+
       } else {
-        console.log('Purchase canceled.');
       }
     });
   }
@@ -54,7 +52,6 @@ export class ProductComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        console.log('Review submitted:', result);
       }
     });
   }
@@ -63,7 +60,6 @@ export class ProductComponent implements OnInit {
     this.productService.purchaseProduct()
       .pipe(take(1))
       .subscribe((res) => {
-        console.log(res);
         window.open(res);
       })
     // window.open('https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=EC-1AJ28718E7729853L');

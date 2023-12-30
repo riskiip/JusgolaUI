@@ -1,16 +1,20 @@
 <h2 mat-dialog-title>Edit Product</h2>
 <div mat-dialog-content>
-  <form #editForm="ngForm">
+  <form [formGroup]="editProductForm" id="edit-product-form">
     <mat-form-field>
-      <input matInput placeholder="Product Name" [(ngModel)]="data.product.name" name="name" required>
+      <input matInput placeholder="Update Product Name" name="name" formControlName="title" required>
     </mat-form-field>
     <br>
     <mat-form-field>
-      <input matInput type="number" placeholder="Price" [(ngModel)]="data.product.price" name="price" required>
+      <input matInput placeholder="Update Description" name="name" formControlName="description" required>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <input matInput placeholder="Update Price" name="price" formControlName="price" required>
     </mat-form-field>
   </form>
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Cancel</button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial [disabled]="!editForm.valid">Save</button>
+  <button mat-button cdkFocusInitial (click)="onEditSave()">Save</button>
 </div>

@@ -44,13 +44,9 @@ export class LoginComponent implements OnInit {
       .pipe(take(1))
       .subscribe((res) => {
         if (res) {
-          console.log(res)
-          console.log(document.cookie)
           localStorage.setItem('token', res.token);
           localStorage.setItem('userId', res._id);
           this.refreshToken = this.cookieService.getCookie('refreshToken');
-          console.log(this.refreshToken);
-          console.log(document.cookie);
           this.router.navigate(['jusgola']);
         }
       })

@@ -64,6 +64,7 @@ export class AddProductModalComponent {
       .subscribe((res) => {
         if (res) {
           this.dialogRef.close(this.formData);
+          window.location.reload();
         }
       })
   }

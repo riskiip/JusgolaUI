@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
 import {map, Observable, take} from "rxjs";
 import {ProductOutput, RegisterProductInput, RegisterProductOutput} from "../../model/productDto";
@@ -30,8 +30,12 @@ export class ProductService {
   }
 
   registerNewProduct(payload: RegisterProductInput): Observable<RegisterProductOutput> {
+    const reqHeader = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + localStorage.getItem('token')
+    });
     return this.http
-      .post<RegisterProductOutput>(`${environment.url}/api/product`, payload)
+      .post<RegisterProductOutput>(`${environment.url}/api/product`, payload, {headers: reqHeader})
       .pipe(map((response: RegisterProductOutput) => {
         return response
       }))
@@ -42,6 +46,22 @@ export class ProductService {
     formData.append('images', imageFile);
     return this.http
       .put<any>(`${environment.url}/api/product/upload/${productId}`, formData)
+      .pipe(map((response: any) => {
+        return response;
+      }))
+  }
+
+  updateProduct(productId: string, payload: RegisterProductInput): Observable<any>{
+    return this.http
+      .put<any>(`${environment.url}/api/product/${productId}`, payload)
+      .pipe(map((response: any) => {
+        return response;
+      }))
+  }
+
+  deleteProduct(productId: string): Observable<any> {
+    return this.http
+      .delete<any>(`${environment.url}/api/product/${productId}`)
       .pipe(map((response: any) => {
         return response;
       }))
