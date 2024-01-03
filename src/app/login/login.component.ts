@@ -45,9 +45,12 @@ export class LoginComponent implements OnInit {
           } else if (res.role === 'merchant') {
             this.router.navigate(['jusgola/merchant']);
           } else {
-            this.router.navigate(['jusgola/admin']);
+            this.router.navigate(['jusgola/ministry']);
           }
+          window.alert(`Welcome ${res.firstname} ${res.lastname}`);
         }
+      }, (err) => {
+        window.alert(err.error.message);
       })
   }
 }

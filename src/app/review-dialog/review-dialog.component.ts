@@ -49,6 +49,8 @@ export class ReviewDialogComponent implements OnInit {
         if (res) {
           window.location.reload();
         }
+      }, (err) => {
+        window.alert(err.error.message);
       })
   }
 }

@@ -1,5 +1,3 @@
-import {Approval} from "./admin.approval.model";
-
 export class Transaction {
   position: number;
   name: string

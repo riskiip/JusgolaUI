@@ -27,6 +27,8 @@ export class ProductComponent implements OnInit {
         if (response) {
           this.dataSources = response;
         }
+      }, (err) => {
+        window.alert(err.error.message);
       })
   }
 
@@ -66,7 +68,8 @@ export class ProductComponent implements OnInit {
         if (res) {
           window.open(res, "_self");
         }
+      }, (err) => {
+        window.alert(err.error.message);
       })
-    // window.open('https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=EC-1AJ28718E7729853L');
   }
 }

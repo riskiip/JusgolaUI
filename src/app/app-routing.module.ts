@@ -26,7 +26,7 @@ const routes: Routes = [
         component: CustomerhomeComponent
       },
       {
-        path: 'admin',
+        path: 'ministry',
         component: AdminComponent,
       },
       {

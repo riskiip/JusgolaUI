@@ -48,6 +48,8 @@ export class EditProductModalComponent implements OnInit {
           this.dialogRef.close();
           window.location.reload();
         }
+      }, (err) => {
+        window.alert(err.error.message);
       })
   }
 

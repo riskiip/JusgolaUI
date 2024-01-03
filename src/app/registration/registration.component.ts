@@ -42,8 +42,11 @@ export class RegistrationComponent implements OnInit {
       .pipe(take(1))
       .subscribe((res) => {
         if (res) {
+          window.alert('Sucessfully registrated. Please Login');
           this.router.navigate(['/jusgola/login'])
         }
+      }, (err) => {
+        window.alert(err.error.message)
       })
   }
 }

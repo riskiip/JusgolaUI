@@ -55,6 +55,8 @@ export class AddProductModalComponent {
         if (response) {
           this.uploadImageToProduct(response._id, this.imageFile);
         }
+      }, (err) => {
+        window.alert(err.error.message);
       })
   }
 
@@ -66,6 +68,8 @@ export class AddProductModalComponent {
           this.dialogRef.close(this.formData);
           window.location.reload();
         }
+      }, (err) => {
+        window.alert(err.error.message);
       })
   }
 

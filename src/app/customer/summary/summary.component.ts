@@ -51,6 +51,8 @@ export class SummaryComponent implements OnInit, OnDestroy {
         if (res) {
           this.inquiryProduct();
         }
+      }, (err) => {
+        window.alert(err.error.message);
       })
   }
 

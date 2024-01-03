@@ -26,6 +26,10 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['/jusgola/login']);
   }
 
+  toRegistration() {
+    this.router.navigate(['/jusgola/registration']);
+  }
+
   logoutUser() {
     let logoutPayload: LogoutInput = {
       cookieToken: localStorage.getItem('refreshToken')
@@ -36,6 +40,9 @@ export class NavbarComponent implements OnInit {
         localStorage.removeItem('refreshToken');
         localStorage.removeItem('userId');
         this.showLogout = false;
+        this.router.navigate(['/jusgola'])
+      }, (err) => {
+        window.alert(err.error.message);
       });
   }
 }
